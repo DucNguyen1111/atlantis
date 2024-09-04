@@ -13,7 +13,7 @@ pipeline {
                         --header 'Content-Type: application/json' \\
                         --data-raw '{
                             "Repository": "${env.REPOSITORY}",
-                            "Ref": "${env.GIT_BRANCH}",
+                            "Ref": "${env.BRANCH_NAME}",
                             "Type": "Github",
                             "Paths": [{
                               "Directory": ".",
