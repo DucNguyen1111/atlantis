@@ -5,6 +5,7 @@ pipeline {
         stage('Run Script and Check Response') {
             steps {
                 script {
+                    echo "ENV: ${env}"
                     // Run the curl command and capture the response
                     def response = sh(
                         script: """
