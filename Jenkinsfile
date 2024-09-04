@@ -5,6 +5,14 @@ pipeline {
         stage('Run Script and Check Response') {
             steps {
                 script {
+                    def headers = request.getHeaderNames()
+                    def logHeaders = []
+
+                    while (headers.hasMoreElements()) {
+                        def headerName = headers.nextElement()
+                        def headerValue = request.getHeader(headerName)
+                        echo "${headerName}: ${headerValue}"
+                    }
                     echo "ENV: ${env}"
                     // Run the curl command and capture the response
                     def response = sh(
