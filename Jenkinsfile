@@ -29,9 +29,11 @@ node {
  ])
 
  stage("build") {
+  def atlantisUrl = env.ATLANTIS_URL
   sh '''
   echo all $everything
   echo Variables from shell:
+  echo url $atlantisUrl
   echo reference $reference
   echo before $before
   echo requestWithNumber $requestWithNumber
@@ -59,7 +61,7 @@ node {
     -H 'X-GitHub-Hook-Installation-Target-Type: $x_github_hook_installation_target_type' \
     -H 'X-Hub-Signature: $x_hub_signature' \
     -H 'X-Hub-Signature-256: $x_hub_signature_256' \
-    -d '$everything' '${env.ATLANTIS_URL}'
+    -d '$everything' $atlantisUrl
   '''
  }
 }
