@@ -43,7 +43,7 @@ node {
   echo requestWithString $requestWithString
   echo headerWithNumber $headerWithNumber
   echo headerWithString $headerWithString
-  echo X_GitHub_Event $X_GitHub_Event
+  echo X_GitHub_Event $x_github_event
   '''
  }
 }
