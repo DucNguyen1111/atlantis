@@ -1,0 +1,29 @@
+{
+  "name": "terraform",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DucNguyen1111/atlantis.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DucNguyen1111/atlantis/issues"
+  },
+  "homepage": "https://github.com/DucNguyen1111/atlantis#readme",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
+    "http": "^0.0.1-security",
+    "install": "^0.13.0",
+    "npm": "^10.8.3",
+    "request": "^2.88.2",
+    "url": "^0.11.4"
+  }
+}
