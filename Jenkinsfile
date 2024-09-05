@@ -53,7 +53,7 @@ node {
     -H 'X-GitHub-Hook-Installation-Target-Type: $x_github_hook_installation_target_type' \
     -H 'X-Hub-Signature: $x_hub_signature' \
     -H 'X-Hub-Signature-256: $x_hub_signature_256' \
-    -d '$everything' http://atlantis.atlantis.svc.cluster.local/api/plan
+    -d '$everything' http://atlantis.atlantis.svc.cluster.local/events
   '''
  }
 }
