@@ -7,23 +7,18 @@ node {
    [$class: 'GenericTrigger',
     genericVariables: [
      [key: 'everything', value: '$'],
-     [key: 'reference', value: '$.ref'],
-     [
-      key: 'before',
-      value: '$.before',
-      expressionType: 'JSONPath', //Optional, defaults to JSONPath
-      regexpFilter: '', //Optional, defaults to empty string
-      defaultValue: '' //Optional, defaults to empty string
-     ]
-    ],
-    genericRequestVariables: [
-     [key: 'requestWithNumber', regexpFilter: '[^0-9]'],
-     [key: 'requestWithString', regexpFilter: '']
     ],
     genericHeaderVariables: [
-     [key: 'headerWithNumber', regexpFilter: '[^0-9]'],
-     [key: 'headerWithString', regexpFilter: ''],
-     [key: 'X-GitHub-Event', regexpFilter: '']
+     [key: 'Accept', regexpFilter: ''],
+     [key: 'Content-Type', regexpFilter: ''],
+     [key: 'User-Agent', regexpFilter: ''],
+     [key: 'X-GitHub-Delivery', regexpFilter: ''],
+     [key: 'X-GitHub-Event', regexpFilter: ''],
+     [key: 'X-GitHub-Hook-ID', regexpFilter: ''],
+     [key: 'X-GitHub-Hook-Installation-Target-ID', regexpFilter: ''],
+     [key: 'X-GitHub-Hook-Installation-Target-Type', regexpFilter: ''],
+     [key: 'X-Hub-Signature', regexpFilter: ''],
+     [key: 'X-Hub-Signature-256', regexpFilter: ''],
     ],
     printContributedVariables: true,
     printPostContent: true,
@@ -43,7 +38,16 @@ node {
   echo requestWithString $requestWithString
   echo headerWithNumber $headerWithNumber
   echo headerWithString $headerWithString
+  echo Accept $accept
+  echo Content-Type $content_type
+  echo User-Agent $user_agent
+  echo X-GitHub-Delivery $x_github_delivery
   echo X_GitHub_Event $x_github_event
+  echo X-GitHub-Hook-ID $x_github_hook_id
+  echo X-GitHub-Hook-Installation-Target-ID $x_github_hook_installation_target_id
+  echo X-GitHub-Hook-Installation-Target-Type $x_github_hook_installation_target_type
+  echo X-Hub-Signature $x_hub_signature
+  echo X-Hub-Signature-256 $$x_hub_signature_256
   '''
  }
 }
