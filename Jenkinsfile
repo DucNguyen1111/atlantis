@@ -29,11 +29,9 @@ node {
  ])
 
  stage("build") {
-  def atlantisUrl = env['ATLANTIS_URL']
   sh '''
   echo all $everything
   echo Variables from shell:
-  echo url $atlantisUrl
   echo Accept $accept
   echo Content-Type $content_type
   echo User-Agent $user_agent
@@ -55,7 +53,7 @@ node {
     -H 'X-GitHub-Hook-Installation-Target-Type: $x_github_hook_installation_target_type' \
     -H 'X-Hub-Signature: $x_hub_signature' \
     -H 'X-Hub-Signature-256: $x_hub_signature_256' \
-    -d '$everything' $atlantisUrl
+    -d '$everything' http://atlantis.atlantis.svc.cluster.local/api/plan
   '''
  }
 }
