@@ -43,17 +43,17 @@ node {
   echo X-Hub-Signature $x_hub_signature
   echo X-Hub-Signature-256 $x_hub_signature_256
   curl -X POST \
-    -H "Accept: $accept" \
-    -H "Content-Type: $content_type" \
-    -H "User-Agent: $user_agent" \
-    -H "X-GitHub-Delivery: $x_github_delivery" \
-    -H "X-GitHub-Event: $x_github_event" \
-    -H "X-GitHub-Hook-ID: $x_github_hook_id" \
-    -H "X-GitHub-Hook-Installation-Target-ID: $x_github_hook_installation_target_id" \
-    -H "X-GitHub-Hook-Installation-Target-Type: $x_github_hook_installation_target_type" \
-    -H "X-Hub-Signature: $x_hub_signature" \
-    -H "X-Hub-Signature-256: $x_hub_signature_256" \
-    -d "$everything" http://atlantis.atlantis.svc.cluster.local/events
+    -H 'Accept: "$accept"' \
+    -H 'Content-Type: "$content_type"' \
+    -H 'User-Agent: "$user_agent"' \
+    -H 'X-GitHub-Delivery: "$x_github_delivery"' \
+    -H 'X-GitHub-Event: "$x_github_event"' \
+    -H 'X-GitHub-Hook-ID: "$x_github_hook_id"' \
+    -H 'X-GitHub-Hook-Installation-Target-ID: "$x_github_hook_installation_target_id"' \
+    -H 'X-GitHub-Hook-Installation-Target-Type: "$x_github_hook_installation_target_type"' \
+    -H 'X-Hub-Signature: "$x_hub_signature"' \
+    -H 'X-Hub-Signature-256: "$x_hub_signature_256"' \
+    -d '"$everything"' http://atlantis.atlantis.svc.cluster.local/events
   '''
  }
 }
