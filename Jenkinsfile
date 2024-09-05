@@ -6,6 +6,7 @@ node {
   pipelineTriggers([
    [$class: 'GenericTrigger',
     genericVariables: [
+     [key: 'everything', value: '$'],
      [key: 'reference', value: '$.ref'],
      [
       key: 'before',
@@ -34,6 +35,7 @@ node {
 
  stage("build") {
   sh '''
+  echo all $everything
   echo Variables from shell:
   echo reference $reference
   echo before $before
