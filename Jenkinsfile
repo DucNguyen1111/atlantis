@@ -29,17 +29,11 @@ node {
  ])
 
  stage("build") {
-  def atlantisUrl = env.ATLANTIS_URL
+  def atlantisUrl = ${env.ATLANTIS_URL}
   sh '''
   echo all $everything
   echo Variables from shell:
   echo url $atlantisUrl
-  echo reference $reference
-  echo before $before
-  echo requestWithNumber $requestWithNumber
-  echo requestWithString $requestWithString
-  echo headerWithNumber $headerWithNumber
-  echo headerWithString $headerWithString
   echo Accept $accept
   echo Content-Type $content_type
   echo User-Agent $user_agent
