@@ -6,6 +6,7 @@ pipeline {
             steps {
                 script {
                     def headers = request.getHeaderNames()
+                    echo "header ${headers}"
                     def logHeaders = []
 
                     while (headers.hasMoreElements()) {
