@@ -29,7 +29,7 @@ node {
  ])
 
  stage("build") {
-  def atlantisUrl = ${env.ATLANTIS_URL}
+  def atlantisUrl = env['ATLANTIS_URL']
   sh '''
   echo all $everything
   echo Variables from shell:
