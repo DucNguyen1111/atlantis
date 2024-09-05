@@ -1,44 +1,47 @@
-pipeline {
-    agent any
-    
-    triggers {
-        githubPush()
-    }
-    
-    stages {
-        stage('Process Webhook') {
-            steps {
-                script {
-                    def payload = null
-                    
-                    // Check if we're running due to a webhook
-                    if (currentBuild.getBuildCauses('org.jenkinsci.plugins.github.webhook.GitHubWebHookCause').size() > 0) {
-                        // Parse the JSON payload
-                        payload = readJSON text: currentBuild.getBuildCauses()[0].shortDescription
-                    } else {
-                        echo "This build was not triggered by a GitHub webhook."
-                        return
-                    }
-                    
-                    // Now you can access the payload data
-                    if (payload) {
-                        echo "Received webhook payload:"
-                        echo payload.toString()
-                        
-                        // Access specific fields (adjust based on the actual payload structure)
-                        if (payload.head_commit) {
-                            echo "Commit message: ${payload.head_commit.message}"
-                        }
-                        if (payload.pusher) {
-                            echo "Pusher name: ${payload.pusher.name}"
-                        }
-                        
-                        // Add more processing logic here
-                    }
-                }
-            }
-        }
-        
-        // Add more stages as needed
-    }
+/*
+ * curl -X POST -H "Content-Type: application/json" -H "headerWithNumber: nbr123" -H "headerWithString: a b c" -d '{ "before": "1848f12", "after": "5cab1", "ref": "refs/heads/develop" }' -vs http://admin:admin@localhost:8080/jenkins/generic-webhook-trigger/invoke?requestWithNumber=nbr%20123\&requestWithString=a%20string
+ */
+node {
+ properties([
+  pipelineTriggers([
+   [$class: 'GenericTrigger',
+    genericVariables: [
+     [key: 'reference', value: '$.ref'],
+     [
+      key: 'before',
+      value: '$.before',
+      expressionType: 'JSONPath', //Optional, defaults to JSONPath
+      regexpFilter: '', //Optional, defaults to empty string
+      defaultValue: '' //Optional, defaults to empty string
+     ]
+    ],
+    genericRequestVariables: [
+     [key: 'requestWithNumber', regexpFilter: '[^0-9]'],
+     [key: 'requestWithString', regexpFilter: '']
+    ],
+    genericHeaderVariables: [
+     [key: 'headerWithNumber', regexpFilter: '[^0-9]'],
+     [key: 'headerWithString', regexpFilter: ''],
+     [key: 'X-GitHub-Event', regexpFilter: '']
+    ],
+    printContributedVariables: true,
+    printPostContent: true,
+    regexpFilterText: '',
+    regexpFilterExpression: ''
+   ]
+  ])
+ ])
+
+ stage("build") {
+  sh '''
+  echo Variables from shell:
+  echo reference $reference
+  echo before $before
+  echo requestWithNumber $requestWithNumber
+  echo requestWithString $requestWithString
+  echo headerWithNumber $headerWithNumber
+  echo headerWithString $headerWithString
+  echo X_GitHub_Event $X_GitHub_Event
+  '''
+ }
 }
