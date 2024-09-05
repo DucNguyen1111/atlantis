@@ -47,7 +47,7 @@ node {
   echo X-GitHub-Hook-Installation-Target-ID $x_github_hook_installation_target_id
   echo X-GitHub-Hook-Installation-Target-Type $x_github_hook_installation_target_type
   echo X-Hub-Signature $x_hub_signature
-  echo X-Hub-Signature-256 $$x_hub_signature_256
+  echo X-Hub-Signature-256 $x_hub_signature_256
   '''
  }
 }
